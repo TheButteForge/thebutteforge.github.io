@@ -20,7 +20,7 @@ author:
   - Group has worked on utilizing the software briefly. 
 
 ### Documentaion
-  - Documentation is being slowly worked on across the board.
+  - Documentation is being slowly worked on across the board both for code and circuit layouts.
 
 ## Message from the club
 
