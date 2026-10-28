@@ -33,10 +33,10 @@ chatmt.ai, hand it your key, and tell it which Bedrock model IDs to use:
 ```bash
 ANTHROPIC_BASE_URL=https://my.chatmt.ai/bedrock \
 ANTHROPIC_API_KEY=your-chatmt-key \
-ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-5' \
-ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-5' \
-ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-sonnet-5' \
-claude --model 'us.anthropic.claude-sonnet-5'
+ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-5-5' \
+ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-5-5' \
+ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-sonnet-5-5' \
+claude --model 'us.anthropic.claude-sonnet-5-5'
 ```
 
 What each piece does:
@@ -80,11 +80,11 @@ once:
   "env": {
     "ANTHROPIC_BASE_URL": "https://my.chatmt.ai/bedrock",
     "ANTHROPIC_API_KEY": "your-chatmt-key",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "us.anthropic.claude-opus-5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "us.anthropic.claude-sonnet-5",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-sonnet-5"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "us.anthropic.claude-opus-5-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "us.anthropic.claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-sonnet-5-5"
   },
-  "model": "us.anthropic.claude-sonnet-5"
+  "model": "us.anthropic.claude-sonnet-5-5"
 }
 ```
 
