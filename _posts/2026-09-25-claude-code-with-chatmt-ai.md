@@ -20,15 +20,32 @@ set, and how to make it stick.
 
 ## What You Need
 
-- **Claude Code.** Install it with `npm install -g @anthropic-ai/claude-code`
-  (Node.js 18 or newer), then check it with `claude --version`.
+- **Claude Code.** On macOS, Linux, or WSL, install it with Anthropic's native
+  installer: `curl -fsSL https://claude.ai/install.sh | bash`. If you already
+  use Node.js 18 or newer, `npm install -g @anthropic-ai/claude-code` works
+  too. Check it with `claude --version`.
 - **A chatmt.ai API key.** Treat it like a password: never paste it into a
   file that gets committed, a screenshot, or a chat.
 
-## One Command
+## Get an API Key
+
+In [my.chatmt.ai](https://my.chatmt.ai), click your initials in the bottom-left
+corner and choose **Settings**.
+
+![chatmt.ai account menu with Settings]({{ '/assets/images/blog/chatmt-account-menu.png' | relative_url }})
+
+Open **API Keys**, give the key a name you will recognize later (for example
+`claude-code-laptop`), and click **Generate Key**. Copy the key right away and
+keep it somewhere safe.
+
+![chatmt.ai API Keys page with Generate Key]({{ '/assets/images/blog/chatmt-api-keys.png' | relative_url }})
+
+## Connect to chatmt.ai
 
 Claude Code talks to whatever server `ANTHROPIC_BASE_URL` names. Point it at
-chatmt.ai, hand it your key, and tell it which Bedrock model IDs to use:
+chatmt.ai, hand it your key, and tell it which Bedrock model IDs to use. In a
+macOS, Linux, or WSL terminal, run this, replacing `your-chatmt-key` with your
+key:
 
 ```bash
 ANTHROPIC_BASE_URL=https://my.chatmt.ai/bedrock \
@@ -38,6 +55,9 @@ ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-5-5' \
 ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-sonnet-5-5' \
 claude --model 'us.anthropic.claude-sonnet-5-5'
 ```
+
+On Windows PowerShell, this syntax does not work; skip to
+[Make It Stick](#make-it-stick) and use the settings file instead.
 
 What each piece does:
 
@@ -50,13 +70,13 @@ What each piece does:
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL` | The model Claude Code uses for small background jobs, such as naming a session. |
 | `--model` | The model this session starts with. |
 
-Bedrock names models differently from Anthropic's API. The `us.` prefix is a
-cross-region inference profile, so the IDs above are the ones chatmt.ai
-understands. Without the `DEFAULT_*` settings, Claude Code would ask for
-model names the endpoint does not recognize. The Haiku setting is easy to miss:
-Claude Code normally runs its background jobs on a small Haiku model, and if
-that request fails you get odd errors in an otherwise working session. Pointing
-it at Sonnet guarantees a model the endpoint serves.
+Bedrock uses its own model names, such as `us.anthropic.claude-sonnet-5-5`.
+The `DEFAULT_*` settings tell Claude Code to use those names; without them it
+asks for models chatmt.ai does not have. The Haiku setting is easy to miss:
+Claude Code normally runs its background jobs on a small Haiku model, but
+chatmt.ai does not serve Haiku 5.5 at the moment, so those requests would fail
+with odd errors in an otherwise working session. Pointing it at Sonnet avoids
+that.
 
 You do not need `CLAUDE_CODE_USE_BEDROCK`, even though Bedrock is behind the
 endpoint. That setting is for talking to AWS directly with AWS credentials;
@@ -73,7 +93,7 @@ session with `/model` when a problem needs deeper reasoning.
 
 Typing that block every time gets old. Claude Code reads environment
 variables from the `env` key of `~/.claude/settings.json`, so you can set them
-once:
+once (again replacing `your-chatmt-key` with your key):
 
 ```json
 {
@@ -119,4 +139,5 @@ to the same conversation, with its context intact, the next day.
   allowed and how it must be disclosed. When in doubt, disclose what the tool
   did in a comment next to the code.
 
-Questions or a setup that will not connect? Bring it to the next meeting.
+Questions or a setup that will not connect? Bring it to the
+[next meeting]({{ '/activity/meetings.html' | relative_url }}).
